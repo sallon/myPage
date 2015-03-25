@@ -39,5 +39,20 @@
 		</article>
 	</section>
 	<!--for html5 swipe pages end -->
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript" src="js/touch.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".page1").on("swipeUp",function(){
+				$(this).addClass("pageOutUp");
+				setTimeout(function(){
+					$(this).removeClass("pageOutUp");
+				},1500)
+			})
+			$(".page1").on("swipeDown",function(){
+				$(this).addClass("pageOutDown");
+			})
+		})
+	</script>
 </body>
 </html>

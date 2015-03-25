@@ -2,6 +2,13 @@
 @import "scss/rem-calc";
 @import "scss/mixin-reset";
 $img:"../images/";
+$bodyColor:"#fff";
+$bodyBgColor:"#fff";
+$font:microsoft yahei, "Tahom";
+$lnkColor:"#fff";
+$lnkColorHover:"#fff";
+
+@include reset($bodyColor, $bodyBgColor, $font, $lnkColor, $lnkColorHover);
 $mediaArray: "only screen and (max-width: 359px)",
 "only screen and (min-width:360px) and (max-width:399px)",
 "only screen and (min-width:400px) and (max-width:479px)",
@@ -31,11 +38,44 @@ $htmSizeArray:  floor($rem-base/$ratioFor320),
     top: 0px;
     left: 0px;
     display: none;
-    .curPage{
+    color: #FFFFFF;
+    &.curPage{
       display: block;
+    }
+    &.page1{
+      background-color: #F00000;
+      line-height: 100%;
+    }
+    span{
+      top: 35%;
+      position: absolute;
+      font-size: rem-calc(160px);
+      left: 20%;
+      &.rote360{
+        @include hack("animation","rote360" 5s linear infinite running);
+      }
     }
   }
 }
+@-webkit-keyframes rote360{
+  from{
+    @include rotate(0deg);
+  }
+  to{
+    @include rotate(360deg);
+  }
+}
+
+.pageOutUp{
+  @include hack("animation","pageOutUp" 1.5s);
+}
+.pageOutDown{
+  @include hack("animation","pageOutDown" 1.5s);
+}
+
+@-webkit-keyframes pageOutUp {from{top:0}to{top: -100%;}}
+@-webkit-keyframes pageOutDown {from{top:0}to{top: 200%;}}
+
 
 // set responsive
 @for $mediaIndex from 1 to length($mediaArray) + 1 {
