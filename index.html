@@ -13,14 +13,14 @@
 <body>
 	<!--for html5 swipe pages start -->
 	<section class="section">
-		<article class="article page1 curPage">
+		<article class="article page1">
 			<span class="rote360">page1</span>
 		</article>
 		<article class="article page2">
-			<span class="rote360">page2</span>
+			<span class="shakeLeftRight">page2</span>
 		</article>
 		<article class="article page3">
-			<span class="rote360">page3</span>
+			<span class="shakeUpDown">page3</span>
 		</article>
 		<article class="article page4">
 			<span class="rote360">page4</span>
@@ -43,16 +43,46 @@
 	<script type="text/javascript" src="js/touch.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			showPageOne();
 			$(".page1").on("swipeUp",function(){
 				$(this).addClass("pageOutUp");
+				$(".page2").css("display","block").addClass("pageInDown");
 				setTimeout(function(){
-					$(this).removeClass("pageOutUp");
-				},1500)
+					$(".page1").css("display","none").removeClass("pageOutUp");
+					$(".page2").removeClass("pageInDown");
+				},1000);
 			})
-			$(".page1").on("swipeDown",function(){
+			$(".page2").on("swipeDown",function(){
 				$(this).addClass("pageOutDown");
+				$(".page1").css("display","block").addClass("pageInUp");
+				setTimeout(function(){
+					$(".page2").css("display","none").removeClass("pageOutDown");
+					$(".page1").removeClass("pageInUp");
+				},1000);
+			})
+			$(".page2").on("swipeUp",function(){
+				$(this).addClass("pageOutUp");
+				$(".page3").css("display","block").addClass("pageInDown");
+				setTimeout(function(){
+					$(".page2").css("display","none").removeClass("pageOutUp");
+					$(".page3").removeClass("pageInDown");
+				},1000);
+			})
+			$(".page3").on("swipeDown",function(){
+				$(this).addClass("pageOutDown");
+				$(".page2").css("display","block").addClass("pageInUp");
+				setTimeout(function(){
+					$(".page3").css("display","none").removeClass("pageOutDown");
+					$(".page2").removeClass("pageInUp");
+				},1000);
 			})
 		})
+		function showPageOne(){
+			$(".page1").css("display","block").addClass("pageFadeIn");
+			setTimeout(function(){
+				$(".page1").removeClass("pageFadeIn");
+			},1000);
+		}
 	</script>
 </body>
 </html>
